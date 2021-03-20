@@ -2,12 +2,14 @@
 % Per-Olof Persson <persson@mit.edu>, November 2006.
 
 % Generate mesh for unit square
-m=11; n=11;
+m=6; n=6;
 [x,y]=ndgrid((0:m-1)/(m-1),(0:n-1)/(n-1));
 p=[x(:),y(:)];
 t=[1,2,m+2; 1,m+2,m+1];
+% What's t?
 t=kron(t,ones(m-1,1))+kron(ones(size(t)),(0:m-2)');
 t=kron(t,ones(n-1,1))+kron(ones(size(t)),(0:n-2)'*m);
+% e represents the boundary elements
 e=[1:m,m+1:m:m*n,2*m:m:m*n,m*n-m+1:m*n-1];
 
 % Assemble K and F
@@ -17,6 +19,8 @@ F=zeros(N,1);
 for ielem=1:size(t,1)
   el=t(ielem,:);
   
+  % what is this area and Q? This is like the determinant formula for 2D
+  % triangle
   Q=[ones(3,1),p(el,:)];
   Area=abs(det(Q))/2;
   c=inv(Q);

@@ -1,4 +1,7 @@
 function u=laplacefft(u0,bndcond)
+% Notice that solving Laplace problem is significantly complicated than
+% solving Poisson problem.
+
 %LAPLACEFFT Solve Laplace's Equation using Fourier's Method.
 %   U = LAPLACEFFT(U0) solves Laplace's equation on a rectangle with Dirichlet
 %   boundary conditions on all four boundaries ("given values"). The size of
